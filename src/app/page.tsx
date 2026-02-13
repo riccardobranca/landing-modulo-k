@@ -1,69 +1,26 @@
 import { AnimatedSection } from '@/components/AnimatedSection';
-import APISection from '@/components/APISection';
-import ConnectorsSection from '@/components/ConnectorsSection';
-import MCPSection from '@/components/MCPSection';
-import MindsetSection from '@/components/MindsetSection';
-import AutomationToolsSection from '@/components/AutomationToolsSection';
-import AIAutomationSection from '@/components/AIAutomationSection';
-import AgentsSection from '@/components/AgentsSection';
-import OpenClawSection from '@/components/OpenClawSection';
-import MultiAgentSection from '@/components/MultiAgentSection';
-import VibeCodingSection from '@/components/VibeCodingSection';
+import RecapSection from '@/components/RecapSection';
+import SkillsInventorySection from '@/components/SkillsInventorySection';
+import ATSSection from '@/components/ATSSection';
+import LearningSection from '@/components/LearningSection';
+import HybridFutureSection from '@/components/HybridFutureSection';
+import AIInCompanySection from '@/components/AIInCompanySection';
 
-function MacroAreaBanner({ part, title, subtitle }: { part: number; title: string; subtitle: string }) {
-  return (
-    <section
-      className="py-10 px-6"
-      style={{
-        background: 'var(--bg-elevated)',
-        borderTop: '1px solid var(--border-subtle)',
-        borderBottom: '1px solid var(--border-subtle)',
-      }}
-    >
-      <div className="max-w-4xl mx-auto text-center">
-        <AnimatedSection>
-          <span
-            className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase mb-3 px-3 py-1 rounded-full"
-            style={{
-              color: 'var(--accent-primary)',
-              background: 'rgba(249, 115, 22, 0.08)',
-              border: '1px solid rgba(249, 115, 22, 0.15)',
-            }}
-          >
-            PARTE {part}
-          </span>
-          <h2
-            className="text-2xl sm:text-3xl font-bold mb-2"
-            style={{ color: 'var(--text-primary)' }}
-          >
-            {title}
-          </h2>
-          <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-            {subtitle}
-          </p>
-        </AnimatedSection>
-      </div>
-    </section>
-  );
-}
-
-export default function ModuloJ() {
+export default function ModuloK() {
   return (
     <main className="gradient-mesh min-h-screen">
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection>
-            <p className="text-sm font-mono text-[var(--accent-primary)] mb-4">MODULO J</p>
+            <p className="text-sm font-mono text-[var(--accent-primary)] mb-4">MODULO K</p>
             <h1 className="heading-hero mb-6">
-              L&apos;AI che <span className="text-gradient">Agisce</span>
+              Carriera e <span className="text-gradient">Chiusura</span>
             </h1>
             <p className="body-large text-[var(--text-secondary)] max-w-2xl mx-auto">
-              L&apos;AI non è solo chat: può accedere ai vostri strumenti,
-              automatizzare il lavoro ripetitivo, agire in autonomia,
-              e persino creare software.
-              In questo modulo scopriamo come l&apos;AI sta passando
-              dal &quot;rispondere&quot; al &quot;fare&quot;.
+              Avete completato il percorso. Ora è il momento di presentare queste competenze
+              nel CV e nei colloqui, superare i filtri ATS, e continuare a imparare.
+              Il futuro è ibrido: umani CON macchine, non contro.
             </p>
           </AnimatedSection>
         </div>
@@ -74,118 +31,67 @@ export default function ModuloJ() {
         <div className="max-w-4xl mx-auto">
           <AnimatedSection>
             <div className="quote-block">
-              <strong>TL;DR</strong> — Le API sono il modo in cui i software comunicano tra loro.
-              I connettori danno all&apos;AI accesso ai vostri strumenti,
-              e MCP li standardizza in un unico protocollo.
-              Le automazioni risparmiano ore di lavoro ripetitivo.
-              Gli agenti pianificano ed eseguono obiettivi da soli.
-              E con il &quot;vibe coding&quot; chiunque può creare software descrivendolo a parole.
-              Questo modulo costruisce questi concetti uno sopra l&apos;altro,
-              dal più semplice al più avanzato.
+              <strong>TL;DR</strong> — Avete acquisito competenze concrete in prompt engineering,
+              AI generativa, analisi dati, automazione. Questo modulo inizia con un riassunto
+              dei concetti chiave, poi vi aiuta a presentarli nel CV, superare gli ATS,
+              e continuare a imparare. L&apos;AI amplifica le vostre capacità: saperla usare
+              è la competenza che fa la differenza.
             </div>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════ */}
-      {/* PARTE 1 — Fondamenta                                       */}
-      {/* ═══════════════════════════════════════════════════════════ */}
-      <MacroAreaBanner
-        part={1}
-        title="Le Fondamenta"
-        subtitle="Come comunicano i software tra loro e come l&apos;AI accede ai vostri strumenti"
-      />
-
-      <section id="api" className="py-16 px-6">
+      {/* K.0 — Riassunto */}
+      <section id="riassunto" className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <APISection />
+          <RecapSection />
         </div>
       </section>
 
       <div className="section-divider max-w-xl my-4" />
 
-      <section id="connettori" className="py-16 px-6">
+      {/* K.1 — Competenze */}
+      <section id="competenze" className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <ConnectorsSection />
+          <SkillsInventorySection />
         </div>
       </section>
 
       <div className="section-divider max-w-xl my-4" />
 
-      <MCPSection />
-
-      {/* ═══════════════════════════════════════════════════════════ */}
-      {/* PARTE 2 — Automazioni                                      */}
-      {/* ═══════════════════════════════════════════════════════════ */}
-      <MacroAreaBanner
-        part={2}
-        title="Le Automazioni"
-        subtitle="Il mindset, le piattaforme e il ruolo dell&apos;AI nel lavoro che gira da solo"
-      />
-
-      <section id="mindset" className="py-16 px-6">
+      {/* K.3 — ATS */}
+      <section id="ats" className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <MindsetSection />
+          <ATSSection />
         </div>
       </section>
 
       <div className="section-divider max-w-xl my-4" />
 
-      <section id="strumenti" className="py-16 px-6">
+      {/* K.4 — Imparare */}
+      <section id="imparare" className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <AutomationToolsSection />
+          <LearningSection />
         </div>
       </section>
 
       <div className="section-divider max-w-xl my-4" />
 
-      <section id="ai-automazioni" className="py-16 px-6">
+      {/* K.5 — Futuro */}
+      <section id="futuro" className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <AIAutomationSection />
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════ */}
-      {/* PARTE 3 — L'AI che agisce                                  */}
-      {/* ═══════════════════════════════════════════════════════════ */}
-      <MacroAreaBanner
-        part={3}
-        title="Agenti e Autonomia"
-        subtitle="Dagli assistenti agli agenti autonomi: l&apos;AI che pianifica, decide e collabora"
-      />
-
-      <section id="agenti" className="py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <AgentsSection />
+          <HybridFutureSection />
         </div>
       </section>
 
       <div className="section-divider max-w-xl my-4" />
 
-      <section id="openclaw" className="py-16 px-6">
+      {/* K.6 — AI in azienda */}
+      <section id="ai-azienda" className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <OpenClawSection />
+          <AIInCompanySection />
         </div>
       </section>
-
-      <div className="section-divider max-w-xl my-4" />
-
-      <section id="multi-agent" className="py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <MultiAgentSection />
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════ */}
-      {/* PARTE 4 — Creazione                                        */}
-      {/* ═══════════════════════════════════════════════════════════ */}
-      <MacroAreaBanner
-        part={4}
-        title="La Creazione"
-        subtitle="Creare software senza scrivere codice: il vibe coding"
-      />
-
-      <VibeCodingSection />
 
       {/* Key Takeaways */}
       <section className="py-16 px-6 bg-[var(--bg-elevated)]">
@@ -194,16 +100,16 @@ export default function ModuloJ() {
             <h2 className="heading-subsection mb-8">Key Takeaways</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {[
-                { n: '1', text: 'Le API sono camerieri — Portano ordini tra software. Non dovete cucinare, basta saper ordinare' },
-                { n: '2', text: 'Connettori ≠ Automazioni — Il connettore risponde quando chiedete; l\'automazione lavora da sola' },
-                { n: '3', text: 'MCP = USB-C dell\'AI — Uno standard per collegare qualsiasi AI a qualsiasi strumento' },
-                { n: '4', text: 'Trigger + Condizione + Azione — La logica universale di ogni automazione, dalla sveglia a Make' },
-                { n: '5', text: 'L\'AI capisce l\'intento — Classifica email, estrae dati, genera contenuti: fa ciò che i filtri tradizionali non possono' },
-                { n: '6', text: 'Gli agenti pianificano e agiscono — Ricevono obiettivi, non comandi. Decidono come raggiungerli' },
-                { n: '7', text: 'I titoli virali mentono — OpenClaw/Moltbook sembrava fantascienza, era pattern matching + cattiva sicurezza' },
-                { n: '8', text: 'Multi-agent = team di esperti — Più agenti specializzati battono un singolo generalista' },
-                { n: '9', text: 'Vibe coding: descrivete, create — Dal convertitore di temperatura al sito web, senza scrivere codice' },
-                { n: '10', text: 'Partite dal basso rischio — Prima monitoraggio e ricerca, poi analisi, infine azioni con conseguenze reali' },
+                { n: '1', text: 'I 4 principi trasversali — Verificate sempre, partite dal semplice, privacy prima di tutto, l\'AI assiste ma voi decidete' },
+                { n: '2', text: 'Competenze concrete da 5 moduli — Scrittura, Voce, Visual, Dati, Automazioni. Sapete quantificarle e presentarle' },
+                { n: '3', text: 'CV ottimizzato per ATS — Usate le stesse parole dell\'annuncio, formato semplice. Verificate con Teal/Jobscan (target: 75%+)' },
+                { n: '4', text: 'Nei colloqui: esempi concreti — Non "so usare l\'AI" ma "uso ChatGPT per X, riducendo il tempo del 40%"' },
+                { n: '5', text: 'Utenti competenti, non esperti tecnici — Sapete usare gli strumenti, capite i limiti, ottenete risultati' },
+                { n: '6', text: 'ATS: il primo filtro è un software — Se non passate il parsing (99% grandi aziende), nessun umano vedrà il CV' },
+                { n: '7', text: 'Copilot e Gemini li incontrerete — Saper dire "ho familiarità con AI integrata" è un vantaggio' },
+                { n: '8', text: 'Imparare semplice — YouTube italiano, giornali, chiedere all\'AI. Evitate guru con promesse esagerate' },
+                { n: '9', text: 'Il futuro è ibrido, non competitivo — Umani CON macchine. Giudizio, relazioni, creatività restano umani' },
+                { n: '10', text: 'Voi siete il pilota — La responsabilità, il contesto, le decisioni importanti restano sempre vostre' },
               ].map((item) => (
                 <div key={item.n} className="glass-card p-4 flex gap-3">
                   <span
@@ -227,75 +133,68 @@ export default function ModuloJ() {
             <h2 className="heading-subsection mb-6">Per approfondire</h2>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="glass-card p-5">
-                <h4 className="font-semibold mb-3 text-[var(--accent-primary)]">Connettori e MCP</h4>
+                <h4 className="font-semibold mb-3 text-[var(--accent-primary)]">CV e ATS</h4>
                 <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
                   <li>
                     &bull;{' '}
-                    <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] hover:underline">
-                      MCP Docs
+                    <a href="https://tealhq.com" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] hover:underline">
+                      Teal
                     </a>{' '}
-                    — Documentazione ufficiale
+                    — Analisi CV e job tracking
                   </li>
                   <li>
                     &bull;{' '}
-                    <a href="https://openai.com/chatgpt" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] hover:underline">
-                      ChatGPT Connectors
+                    <a href="https://jobscan.co" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] hover:underline">
+                      Jobscan
                     </a>{' '}
-                    — Connettori integrati
+                    — Verifica compatibilità ATS
                   </li>
                 </ul>
               </div>
 
               <div className="glass-card p-5">
-                <h4 className="font-semibold mb-3 text-[var(--accent-primary)]">Automazione</h4>
+                <h4 className="font-semibold mb-3 text-[var(--accent-primary)]">Imparare</h4>
                 <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
                   <li>
                     &bull;{' '}
-                    <a href="https://zapier.com" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] hover:underline">
-                      Zapier
+                    <a href="https://coursera.org" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] hover:underline">
+                      Coursera
                     </a>{' '}
-                    — 7.000+ integrazioni
+                    — Corsi universitari gratuiti
                   </li>
                   <li>
                     &bull;{' '}
-                    <a href="https://make.com" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] hover:underline">
-                      Make
+                    <a href="https://learn.microsoft.com" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] hover:underline">
+                      Microsoft Learn
                     </a>{' '}
-                    — Visual workflow builder
+                    — Copilot e AI in italiano
                   </li>
                   <li>
                     &bull;{' '}
-                    <a href="https://n8n.io" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] hover:underline">
-                      n8n
+                    <a href="https://skillshop.withgoogle.com" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] hover:underline">
+                      Google Skillshop
                     </a>{' '}
-                    — Open source, self-hosted
+                    — Corsi Google su AI
                   </li>
                 </ul>
               </div>
 
               <div className="glass-card p-5">
-                <h4 className="font-semibold mb-3 text-[var(--accent-primary)]">Agenti e Vibe Coding</h4>
+                <h4 className="font-semibold mb-3 text-[var(--accent-primary)]">AI in Azienda</h4>
                 <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
                   <li>
                     &bull;{' '}
-                    <a href="https://github.com/openclaw" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] hover:underline">
-                      OpenClaw
+                    <a href="https://copilot.microsoft.com" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] hover:underline">
+                      Microsoft Copilot
                     </a>{' '}
-                    — Caso studio agente AI virale
+                    — AI in Office 365
                   </li>
                   <li>
                     &bull;{' '}
-                    <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] hover:underline">
-                      Lovable
+                    <a href="https://workspace.google.com/solutions/ai/" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] hover:underline">
+                      Gemini for Workspace
                     </a>{' '}
-                    — Vibe coding accessibile
-                  </li>
-                  <li>
-                    &bull;{' '}
-                    <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="text-[var(--accent-primary)] hover:underline">
-                      Claude Artifacts
-                    </a>{' '}
-                    — Demo in 2 minuti, gratis
+                    — AI in Google Workspace
                   </li>
                 </ul>
               </div>
@@ -307,10 +206,15 @@ export default function ModuloJ() {
       {/* Footer */}
       <footer className="py-12 px-6 border-t border-[var(--border-subtle)]">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm text-[var(--text-muted)] mb-4">Fine Modulo J</p>
-          <p className="text-[var(--text-secondary)]">
-            Dalle API ai connettori, dalle automazioni agli agenti, dai sistemi multi-agent al vibe coding.
-            Ora sapete dove siamo e dove stiamo andando.
+          <p className="text-sm text-[var(--text-muted)] mb-4">Fine Modulo K — Fine Corso</p>
+          <p className="text-[var(--text-secondary)] mb-6">
+            Congratulazioni per aver completato il percorso. Avete acquisito competenze concrete
+            che la maggior parte delle persone non ha. Ora è il momento di metterle in pratica:
+            ottimizzate il CV, candidatevi con fiducia, e continuate a esplorare.
+            L&apos;AI è uno strumento potente — voi sapete usarlo bene.
+          </p>
+          <p className="text-sm" style={{ color: 'var(--accent-primary)' }}>
+            In bocca al lupo 🚀
           </p>
         </div>
       </footer>

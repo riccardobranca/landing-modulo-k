@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Modulo J — Automazioni, Agenti e Creazione con l'AI",
-  description: "Automatizzate il lavoro ripetitivo, scoprite gli agenti AI, connettori, MCP e il vibe coding: dall'automazione semplice alla creazione di software senza codice.",
+  title: "Modulo K — Carriera e Chiusura",
+  description: "Conclusione del corso: inventory delle competenze, ottimizzazione ATS, strategie di apprendimento continuo, futuro ibrido dell'AI e come presentare le skill AI nei colloqui.",
 };
 
 export default function RootLayout({
