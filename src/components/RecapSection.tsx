@@ -1,199 +1,6 @@
 'use client';
 
-import { AnimatedSection, StaggerContainer, StaggerItem } from '@/components/AnimatedSection';
-
-/* ------------------------------------------------------------------ */
-/*  Data                                                               */
-/* ------------------------------------------------------------------ */
-
-interface ModuleCard {
-  module: string;
-  title: string;
-  bullets: string[];
-  icon: React.ReactNode;
-}
-
-const modules: ModuleCard[] = [
-  {
-    module: 'A',
-    title: 'Cos\'è l\'AI',
-    bullets: [
-      'AI generativa vs tradizionale (crea vs classifica)',
-      'LLM = predittore di parole (T9 avanzato)',
-      'Pappagallo stocastico: ripete pattern, non capisce',
-      'Allucinazioni: l\'AI inventa fatti con sicurezza',
-      'Il momento ChatGPT: 100M utenti in 2 mesi',
-    ],
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 16v-4" />
-        <path d="M12 8h.01" />
-      </svg>
-    ),
-  },
-  {
-    module: 'B',
-    title: 'Modello → Prodotto',
-    bullets: [
-      'Architettura a 3 strati: Modello → Orchestrazione → Interfaccia',
-      'GPT-5 (motore) vs ChatGPT (auto completa)',
-      'Orchestrazione aggiunge: memoria, tool, web, sicurezza',
-      'Cloud vs on-device (privacy vs potenza)',
-      'Stesso modello, prodotti diversi',
-    ],
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-      </svg>
-    ),
-  },
-  {
-    module: 'C',
-    title: 'I Prodotti',
-    bullets: [
-      'ChatGPT: il più usato (900M/settimana)',
-      'Claude: migliore per documenti e coding',
-      'Gemini: integrazione Google Workspace nativa',
-      'Copilot: gratis in Windows, $$$ in Office',
-      'Piani: $0 limitato → $20 sbloccato → $200 illimitato',
-    ],
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-        <line x1="12" y1="22.08" x2="12" y2="12" />
-      </svg>
-    ),
-  },
-  {
-    module: 'D',
-    title: 'Prompt Engineering',
-    bullets: [
-      'Struttura: Contesto + Istruzione + Formato',
-      'Specificità è fondamentale (no prompt vaghi)',
-      'Ruolo, esempi, vincoli migliorano risposte',
-      'Non esistono "prompt magici" - conta la chiarezza',
-      'Iterazione: affinate chiedendo modifiche',
-    ],
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="4 17 10 11 4 5" />
-        <line x1="12" y1="19" x2="20" y2="19" />
-      </svg>
-    ),
-  },
-  {
-    module: 'E',
-    title: 'Privacy e Responsabilità',
-    bullets: [
-      'Training vs Inference (addestrare vs elaborare)',
-      'Impostazioni privacy per ogni servizio',
-      'USO PERSONALE vs LAVORATIVO: distinzione cruciale',
-      'Regola d\'oro: se il dato non è vostro, non caricatelo',
-      'GDPR + AI Act: minimizzazione, trasparenza, consenso',
-    ],
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-      </svg>
-    ),
-  },
-  {
-    module: 'F',
-    title: 'Scrittura',
-    bullets: [
-      'Workflow: Idea → Scaletta → Bozza AI → Revisione → Finale',
-      'Verifica sempre: l\'AI può allucinare',
-      'Un CV per ogni lavoro (personalizza con keyword)',
-      '6 prompt fondamentali: brainstorming, bozza, editing, riassunto',
-      'Perplexity (ricerca) + NotebookLM (analisi documenti)',
-    ],
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 19l7-7 3 3-7 7-3-3z" />
-        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
-        <path d="M2 2l7.586 7.586" />
-        <circle cx="11" cy="11" r="2" />
-      </svg>
-    ),
-  },
-  {
-    module: 'G',
-    title: 'Voce e Audio',
-    bullets: [
-      'Trascrizioni automatiche meeting/video (minuti, non ore)',
-      'Voice mode: conversazioni naturali senza scrivere',
-      'Text-to-speech: voci naturali per contenuti accessibili',
-      'Accessibilità: sottotitoli, screen reader, sintesi vocale',
-      'Privacy audio: no conversazioni riservate su cloud',
-    ],
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" />
-        <path d="M19 10v2a7 7 0 01-14 0v-2" />
-        <line x1="12" y1="19" x2="12" y2="23" />
-        <line x1="8" y1="23" x2="16" y2="23" />
-      </svg>
-    ),
-  },
-  {
-    module: 'H',
-    title: 'Visual (Immagini e Video)',
-    bullets: [
-      'I 3 livelli: Modello (FLUX, Kling) → Interfaccia (Leonardo) → Aggregatori (Krea)',
-      'Stesso modello su piattaforme diverse = risultati diversi',
-      'Prompt efficaci: soggetto + azione + ambiente + luce + stile + formato',
-      'Foto profilo: migliorate reali (remove.bg), non fake AI',
-      'Tool gratuiti: Microsoft Designer, Leonardo.ai (150 crediti/giorno), Pika',
-    ],
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-        <circle cx="8.5" cy="8.5" r="1.5" />
-        <polyline points="21 15 16 10 5 21" />
-      </svg>
-    ),
-  },
-  {
-    module: 'I',
-    title: 'Excel e Dati',
-    bullets: [
-      'Paradigma nuovo: descrivete cosa volete, AI scrive la formula',
-      'Gemini in Sheets, Copilot in Excel - AI già integrata',
-      'Garbage in → garbage out: dati sporchi = analisi sbagliata',
-      'Flash Fill (Ctrl+E): mostrate esempio, Excel replica il pattern',
-      'Code Interpreter: carica Excel, l\'AI analizza, pulisce, crea grafici',
-    ],
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="18" y1="20" x2="18" y2="10" />
-        <line x1="12" y1="20" x2="12" y2="4" />
-        <line x1="6" y1="20" x2="6" y2="14" />
-      </svg>
-    ),
-  },
-  {
-    module: 'J',
-    title: 'Automazioni e Agenti',
-    bullets: [
-      'API = camerieri tra servizi (portano ordini, non cucinano)',
-      'Connettori: AI accede quando chiedete. Automazioni: lavorano da sole',
-      'Trigger → Azione (quando X, fai Y). Es: email → salva in Drive',
-      'ROI: automatizzare solo se tempo risparmiato > tempo setup',
-      'Agenti vs Chatbot: agente pianifica e agisce, chatbot solo risponde',
-      'Vibe coding: descrivete app, AI la crea (Lovable, v0, Artifacts)',
-    ],
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
-        <line x1="4" y1="22" x2="4" y2="15" />
-      </svg>
-    ),
-  },
-];
+import { AnimatedSection } from '@/components/AnimatedSection';
 
 /* ------------------------------------------------------------------ */
 /*  Component                                                          */
@@ -202,7 +9,7 @@ const modules: ModuleCard[] = [
 export default function RecapSection() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <AnimatedSection>
           <div className="text-center mb-16">
@@ -220,155 +27,666 @@ export default function RecapSection() {
               className="text-3xl sm:text-4xl font-bold mb-4"
               style={{ color: 'var(--text-primary)' }}
             >
-              Riassunto dei Moduli
+              Il Vostro Percorso
             </h2>
             <p
               className="text-lg max-w-2xl mx-auto"
               style={{ color: 'var(--text-secondary)' }}
             >
-              Ripasso veloce dei concetti chiave prima di chiudere il corso
+              Un viaggio completo attraverso tutto quello che abbiamo affrontato nel corso &mdash; dai fondamenti teorici alle applicazioni pratiche che potete usare domani.
             </p>
           </div>
         </AnimatedSection>
 
-        {/* Module cards */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.08}>
-          {modules.map((mod) => (
-            <StaggerItem key={mod.module}>
-              <div className="glass-card p-6 h-full flex flex-col">
-                {/* Header with icon and module name */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{
-                      background: 'rgba(249, 115, 22, 0.12)',
-                      color: 'var(--accent-primary)',
-                    }}
-                  >
-                    {mod.icon}
-                  </div>
-                  <div>
-                    <div
-                      className="text-xs font-bold tracking-widest uppercase mb-0.5"
-                      style={{ color: 'var(--text-muted)' }}
-                    >
-                      Modulo {mod.module}
-                    </div>
-                    <h3
-                      className="text-lg font-bold"
-                      style={{ color: 'var(--text-primary)' }}
-                    >
-                      {mod.title}
-                    </h3>
-                  </div>
+        {/* ============================================================ */}
+        {/*  MODULO A — Cos'è l'AI                                        */}
+        {/* ============================================================ */}
+        <AnimatedSection delay={0.05}>
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <span
+                className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0"
+                style={{ background: 'var(--accent-primary)', color: '#fff' }}
+              >
+                A
+              </span>
+              <h3
+                className="text-2xl font-bold"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                Cos&apos;è l&apos;AI e come funziona
+              </h3>
+            </div>
+
+            <div className="space-y-4 text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <p>
+                Siamo partiti dalla domanda fondamentale: <strong style={{ color: 'var(--text-primary)' }}>cos&apos;è realmente l&apos;AI che usate ogni giorno?</strong> La
+                risposta, forse sorprendente, è che non si tratta di intelligenza nel senso umano.
+                I Large Language Model (come GPT, Claude, Gemini) fanno una cosa sola, ripetuta miliardi
+                di volte: <strong style={{ color: 'var(--text-primary)' }}>predicono la parola successiva</strong>. Funzionano come il T9 dei
+                vecchi cellulari, ma a un livello di sofisticazione inimmaginabilmente maggiore.
+              </p>
+
+              <p>
+                Abbiamo capito la differenza tra <strong style={{ color: 'var(--text-primary)' }}>AI tradizionale</strong> (che classifica: spam/non spam,
+                gatto/cane) e <strong style={{ color: 'var(--text-primary)' }}>AI generativa</strong> (che crea contenuti nuovi: testo, immagini, audio). L&apos;AI
+                generativa è il sottoinsieme più recente, reso possibile dall&apos;architettura Transformer
+                (2017) e da quantità enormi di dati e potenza di calcolo.
+              </p>
+
+              <p>
+                Il concetto chiave che ritorna in tutto il corso è quello del <strong style={{ color: 'var(--text-primary)' }}>&quot;pappagallo stocastico&quot;</strong>:
+                l&apos;AI ripete pattern che ha visto, non &quot;capisce&quot; quello che dice. Quando sembra
+                empatica, intelligente, o creativa, sta replicando pattern di empatia, intelligenza
+                e creatività che ha trovato nei dati di addestramento. Questo spiega le <strong style={{ color: 'var(--text-primary)' }}>allucinazioni</strong>:
+                l&apos;AI può inventare fatti con assoluta sicurezza, perché genera testo che <em>suona</em> plausibile,
+                non testo che <em>è</em> vero.
+              </p>
+
+              <p>
+                Infine abbiamo distinto tre strumenti diversi che la gente confonde:
+                un <strong style={{ color: 'var(--text-primary)' }}>motore di ricerca</strong> (Google) trova documenti,
+                un <strong style={{ color: 'var(--text-primary)' }}>LLM</strong> (ChatGPT, Claude) genera risposte, e
+                un <strong style={{ color: 'var(--text-primary)' }}>motore di risposta</strong> (Perplexity) fa entrambe le cose mostrando le fonti.
+                Sapere quando usare quale è una competenza pratica importante.
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <div className="section-divider max-w-xs my-8" />
+
+        {/* ============================================================ */}
+        {/*  MODULO B — Dal modello al prodotto                           */}
+        {/* ============================================================ */}
+        <AnimatedSection delay={0.05}>
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <span
+                className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0"
+                style={{ background: 'var(--accent-primary)', color: '#fff' }}
+              >
+                B
+              </span>
+              <h3
+                className="text-2xl font-bold"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                Dal modello al prodotto
+              </h3>
+            </div>
+
+            <div className="space-y-4 text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <p>
+                Un concetto fondamentale: <strong style={{ color: 'var(--text-primary)' }}>GPT-5 non è ChatGPT</strong>. GPT-5 è il motore, ChatGPT è
+                l&apos;auto completa. Ogni prodotto AI è composto da tre strati:
+              </p>
+
+              <div className="glass-card p-5 my-4 font-mono text-sm text-center" style={{ color: 'var(--text-primary)' }}>
+                <div className="mb-2 p-2 rounded" style={{ background: 'rgba(249, 115, 22, 0.08)' }}>
+                  <strong>Interfaccia</strong> &mdash; quello che vedete (chat, app, sidebar)
                 </div>
-
-                {/* Bullets */}
-                <ul className="space-y-2.5 flex-1">
-                  {mod.bullets.map((bullet, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5">
-                      <span
-                        className="mt-1.5 flex-shrink-0"
-                        style={{ color: 'var(--accent-primary)' }}
-                      >
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                      </span>
-                      <span
-                        className="text-sm leading-relaxed"
-                        style={{ color: 'var(--text-secondary)' }}
-                      >
-                        {bullet}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="mb-2 p-2 rounded" style={{ background: 'rgba(249, 115, 22, 0.12)' }}>
+                  <strong>Orchestrazione</strong> &mdash; memoria, tool, web, sicurezza
+                </div>
+                <div className="p-2 rounded" style={{ background: 'rgba(249, 115, 22, 0.18)' }}>
+                  <strong>Modello</strong> &mdash; il &quot;cervello&quot; che predice le parole
+                </div>
               </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
 
-        {/* Concetti Trasversali */}
-        <AnimatedSection delay={0.25}>
-          <div className="mt-16 mb-12">
+              <p>
+                Questa distinzione vi spiega perché <strong style={{ color: 'var(--text-primary)' }}>lo stesso modello in prodotti diversi si comporta diversamente</strong>:
+                GPT in ChatGPT non è uguale a GPT in Copilot, perché l&apos;orchestrazione è diversa.
+                Vi spiega anche perché ChatGPT può fare cose che il modello &quot;puro&quot; non può:
+                cercare sul web, eseguire codice, generare immagini &mdash; sono tutte funzionalità aggiunte
+                dallo strato di orchestrazione, non dal modello.
+              </p>
+
+              <p>
+                Abbiamo anche visto la differenza tra <strong style={{ color: 'var(--text-primary)' }}>cloud e on-device</strong>: la maggior parte
+                dei modelli potenti gira sui server del provider (i vostri dati viaggiano su internet),
+                mentre alcuni modelli più piccoli girano direttamente sul vostro dispositivo (privacy totale
+                ma meno capaci). Apple Intelligence e Gemini Nano sono esempi di AI on-device.
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <div className="section-divider max-w-xs my-8" />
+
+        {/* ============================================================ */}
+        {/*  MODULO C — I prodotti                                        */}
+        {/* ============================================================ */}
+        <AnimatedSection delay={0.05}>
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <span
+                className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0"
+                style={{ background: 'var(--accent-primary)', color: '#fff' }}
+              >
+                C
+              </span>
+              <h3
+                className="text-2xl font-bold"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                I prodotti che usate
+              </h3>
+            </div>
+
+            <div className="space-y-4 text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <p>
+                Abbiamo creato account e imparato ad orientarci nei quattro chatbot principali, ognuno con punti di forza diversi:
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4">
+                <div className="glass-card p-4">
+                  <p className="font-bold text-sm mb-1" style={{ color: 'var(--text-primary)' }}>ChatGPT</p>
+                  <p className="text-sm">Il più usato (900M utenti/settimana). Ecosistema ricchissimo: Agent, memoria, GPT Store, connettori. Il &quot;coltellino svizzero&quot;.</p>
+                </div>
+                <div className="glass-card p-4">
+                  <p className="font-bold text-sm mb-1" style={{ color: 'var(--text-primary)' }}>Claude</p>
+                  <p className="text-sm">Migliore per documenti lunghi e coding. Interfaccia pulita, Projects per lavoro persistente, Artifacts per visualizzare output.</p>
+                </div>
+                <div className="glass-card p-4">
+                  <p className="font-bold text-sm mb-1" style={{ color: 'var(--text-primary)' }}>Gemini</p>
+                  <p className="text-sm">Integrazione nativa con Google: @Gmail, @Drive, @Calendar. Generative Interfaces uniche. Perfetto per chi usa l&apos;ecosistema Google.</p>
+                </div>
+                <div className="glass-card p-4">
+                  <p className="font-bold text-sm mb-1" style={{ color: 'var(--text-primary)' }}>Copilot</p>
+                  <p className="text-sm">Gratuito in Windows e Edge. Copilot dentro Office (Word, Excel, Teams) richiede licenze enterprise &mdash; ma il chatbot base è gratis.</p>
+                </div>
+              </div>
+
+              <p>
+                Punto importante: <strong style={{ color: 'var(--text-primary)' }}>i piani gratuiti hanno limiti severi</strong> ma
+                sono sufficienti per iniziare. A $20/mese si sbloccano modelli migliori e limiti più alti.
+                $200/mese (ChatGPT Pro) è per chi lo usa intensamente tutto il giorno &mdash;
+                per la maggior parte delle persone non serve. Abbiamo anche visto tool specializzati
+                come <strong style={{ color: 'var(--text-primary)' }}>Perplexity</strong> per la ricerca con fonti
+                e <strong style={{ color: 'var(--text-primary)' }}>NotebookLM</strong> per analizzare i vostri documenti.
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <div className="section-divider max-w-xs my-8" />
+
+        {/* ============================================================ */}
+        {/*  MODULO D — Come comunicare con l'AI                          */}
+        {/* ============================================================ */}
+        <AnimatedSection delay={0.05}>
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <span
+                className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0"
+                style={{ background: 'var(--accent-primary)', color: '#fff' }}
+              >
+                D
+              </span>
+              <h3
+                className="text-2xl font-bold"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                Come comunicare con l&apos;AI
+              </h3>
+            </div>
+
+            <div className="space-y-4 text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <p>
+                Il prompting non è magia e non servono trucchi segreti. È una <strong style={{ color: 'var(--text-primary)' }}>competenza di comunicazione</strong>:
+                saper spiegare chiaramente cosa volete a un interlocutore molto capace ma privo di contesto.
+                L&apos;AI è come un collega nuovo appena arrivato: bravissimo, ma non sa nulla della vostra
+                situazione specifica.
+              </p>
+
+              <p>
+                La struttura base che funziona sempre è <strong style={{ color: 'var(--text-primary)' }}>Contesto + Istruzione + Formato</strong>:
+                date le informazioni di sfondo necessarie, dite chiaramente cosa deve fare, e specificate come volete la risposta.
+                Non servono sempre tutti e tre, ma per compiti importanti fare questo sforzo fa un&apos;enorme differenza.
+              </p>
+
+              <div className="glass-card p-5 my-4">
+                <p className="text-sm font-bold mb-3" style={{ color: 'var(--accent-primary)' }}>La differenza in pratica:</p>
+                <div className="mb-3 p-3 rounded" style={{ background: 'rgba(239, 68, 68, 0.06)', borderLeft: '3px solid var(--color-error)' }}>
+                  <p className="text-sm"><strong>Vago:</strong> &quot;Scrivi un&apos;email&quot;</p>
+                </div>
+                <div className="p-3 rounded" style={{ background: 'rgba(34, 197, 94, 0.06)', borderLeft: '3px solid var(--color-success)' }}>
+                  <p className="text-sm"><strong>Specifico:</strong> &quot;Scrivi un&apos;email di sollecito pagamento a Tecnologie Srl, fattura 2024/456 da 1.200&euro; scaduta da 15 giorni. Tono cortese ma fermo, max 10 righe.&quot;</p>
+                </div>
+              </div>
+
+              <p>
+                Abbiamo poi approfondito i componenti utili: il <strong style={{ color: 'var(--text-primary)' }}>ruolo</strong> (&quot;Sei un recruiter
+                con 15 anni di esperienza...&quot;), gli <strong style={{ color: 'var(--text-primary)' }}>esempi</strong> (mostrate quello che volete
+                invece di descriverlo), i <strong style={{ color: 'var(--text-primary)' }}>vincoli</strong> (&quot;non usare gergo tecnico, max 300 parole&quot;),
+                e soprattutto l&apos;<strong style={{ color: 'var(--text-primary)' }}>iterazione</strong>: il primo prompt raramente è perfetto,
+                e affinare chiedendo modifiche (&quot;più breve&quot;, &quot;tono più formale&quot;, &quot;aggiungi esempi&quot;) è il modo
+                normale di lavorare con l&apos;AI.
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <div className="section-divider max-w-xs my-8" />
+
+        {/* ============================================================ */}
+        {/*  MODULO E — Privacy e responsabilità                          */}
+        {/* ============================================================ */}
+        <AnimatedSection delay={0.05}>
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <span
+                className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0"
+                style={{ background: 'var(--accent-primary)', color: '#fff' }}
+              >
+                E
+              </span>
+              <h3
+                className="text-2xl font-bold"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                Privacy e responsabilità
+              </h3>
+            </div>
+
+            <div className="space-y-4 text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <p>
+                Quando usate un&apos;AI in cloud, i vostri dati viaggiano sui server del provider. Abbiamo
+                distinto due concetti fondamentali: <strong style={{ color: 'var(--text-primary)' }}>inference</strong> (il modello elabora la
+                vostra richiesta &mdash; inevitabile, è il servizio) e <strong style={{ color: 'var(--text-primary)' }}>training</strong> (i vostri
+                dati vengono usati per migliorare il modello &mdash; opzionale, disattivabile).
+              </p>
+
+              <p>
+                La distinzione più importante del modulo: <strong style={{ color: 'var(--text-primary)' }}>uso personale vs uso lavorativo</strong>.
+                Se i dati sono vostri, decidete voi il rischio. Ma se sono dati aziendali, di clienti o
+                di pazienti, <strong style={{ color: 'var(--text-primary)' }}>non potete caricarli su servizi AI consumer senza autorizzazione</strong>.
+                Potreste violare la policy aziendale, accordi di riservatezza (NDA), e il GDPR.
+              </p>
+
+              <div
+                className="quote-block p-5 my-4 rounded-xl"
+                style={{ borderLeft: '4px solid var(--color-warning)' }}
+              >
+                <p className="text-sm leading-relaxed" style={{ fontStyle: 'normal' }}>
+                  <strong>La regola d&apos;oro:</strong> Se il dato non è vostro, non caricatelo su servizi AI consumer
+                  senza autorizzazione esplicita. Non è paranoia &mdash; è professionalità. E in molti casi, è la legge.
+                </p>
+              </div>
+
+              <p>
+                Abbiamo anche toccato il <strong style={{ color: 'var(--text-primary)' }}>GDPR</strong> (minimizzazione, trasparenza, diritto
+                di cancellazione) e l&apos;<strong style={{ color: 'var(--text-primary)' }}>AI Act europeo</strong>, in vigore dal febbraio 2025, che
+                introduce l&apos;obbligo di &quot;AI literacy&quot; per chi usa sistemi di AI &mdash; esattamente quello che
+                questo corso vi dà.
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Transition to practical modules */}
+        <AnimatedSection delay={0.05}>
+          <div
+            className="p-6 rounded-2xl mb-16 text-center"
+            style={{
+              background: 'var(--bg-elevated)',
+              border: '1px solid var(--border-subtle)',
+            }}
+          >
+            <p
+              className="text-base leading-relaxed"
+              style={{ color: 'var(--text-secondary)' }}
+            >
+              Con i moduli A-E avete acquisito i <strong style={{ color: 'var(--accent-primary)' }}>fondamenti</strong>: sapete cos&apos;è l&apos;AI,
+              come funziona, quali strumenti usare, come comunicare efficacemente, e come farlo in modo responsabile.
+              <br />
+              Con i moduli F-J siamo passati alle <strong style={{ color: 'var(--accent-primary)' }}>applicazioni pratiche</strong>.
+            </p>
+          </div>
+        </AnimatedSection>
+
+        {/* ============================================================ */}
+        {/*  MODULO F — Scrittura                                         */}
+        {/* ============================================================ */}
+        <AnimatedSection delay={0.05}>
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <span
+                className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0"
+                style={{ background: 'var(--accent-primary)', color: '#fff' }}
+              >
+                F
+              </span>
+              <h3
+                className="text-2xl font-bold"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                Scrittura, ricerca e documenti
+              </h3>
+            </div>
+
+            <div className="space-y-4 text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <p>
+                Il primo modulo pratico ha stabilito il <strong style={{ color: 'var(--text-primary)' }}>workflow fondamentale</strong> per
+                lavorare con l&apos;AI nella scrittura: Idea &rarr; Scaletta AI &rarr; Bozza AI &rarr; Revisione umana &rarr; Finale.
+                La regola d&apos;oro: <em>&quot;L&apos;AI scrive la bozza, voi scrivete la versione finale.&quot;</em>
+                Mai pubblicare output AI senza review.
+              </p>
+
+              <p>
+                Abbiamo imparato i <strong style={{ color: 'var(--text-primary)' }}>6 prompt fondamentali</strong> che coprono il 90% dei
+                casi d&apos;uso nella scrittura: brainstorming, scaletta, bozza, editing, cambio tono, sintesi.
+                Con questi sei &quot;attrezzi&quot; potete gestire email, report, presentazioni, CV e cover letter.
+              </p>
+
+              <p>
+                Punto cruciale per la carriera: <strong style={{ color: 'var(--text-primary)' }}>un CV per ogni lavoro</strong>.
+                Non mandate lo stesso CV a tutti &mdash; prendete l&apos;annuncio, estraete le keyword,
+                e chiedete all&apos;AI di personalizzare il vostro CV base usando quelle parole chiave.
+                Abbiamo anche visto <strong style={{ color: 'var(--text-primary)' }}>Perplexity</strong> per la ricerca con fonti verificabili
+                e <strong style={{ color: 'var(--text-primary)' }}>NotebookLM</strong> per far analizzare all&apos;AI i vostri documenti senza
+                che escano dal vostro spazio personale.
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <div className="section-divider max-w-xs my-8" />
+
+        {/* ============================================================ */}
+        {/*  MODULO G — Voce e audio                                      */}
+        {/* ============================================================ */}
+        <AnimatedSection delay={0.05}>
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <span
+                className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0"
+                style={{ background: 'var(--accent-primary)', color: '#fff' }}
+              >
+                G
+              </span>
+              <h3
+                className="text-2xl font-bold"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                Voce e audio
+              </h3>
+            </div>
+
+            <div className="space-y-4 text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <p>
+                L&apos;AI vocale si basa su tre componenti: <strong style={{ color: 'var(--text-primary)' }}>Speech-to-Text</strong> (trasforma
+                audio in testo &mdash; la trascrizione), <strong style={{ color: 'var(--text-primary)' }}>Text-to-Speech</strong> (trasforma testo in
+                audio &mdash; la sintesi vocale), e il <strong style={{ color: 'var(--text-primary)' }}>modello linguistico</strong> che capisce e risponde.
+                Il voice mode di ChatGPT li usa tutti e tre in sequenza rapida.
+              </p>
+
+              <p>
+                L&apos;applicazione più utile per il lavoro è la <strong style={{ color: 'var(--text-primary)' }}>trascrizione automatica dei meeting</strong>:
+                tool come Fireflies o tl;dv entrano nella videochiamata, trascrivono tutto, e distinguono
+                chi sta parlando (speaker diarization). Potete concentrarvi sulla discussione
+                invece di prendere appunti, e poi chiedere all&apos;AI di estrarre i punti chiave e gli action item.
+              </p>
+
+              <p>
+                Abbiamo anche visto il <strong style={{ color: 'var(--text-primary)' }}>voice cloning</strong> e i suoi rischi:
+                con pochi secondi di audio si può replicare una voce. Questo rende possibili truffe vocali
+                (qualcuno che &quot;simula&quot; la voce del vostro capo). La regola: <strong style={{ color: 'var(--text-primary)' }}>mai fidarsi solo di una voce</strong> per
+                decisioni importanti &mdash; verificate sempre con un altro canale.
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <div className="section-divider max-w-xs my-8" />
+
+        {/* ============================================================ */}
+        {/*  MODULO H — Visual                                            */}
+        {/* ============================================================ */}
+        <AnimatedSection delay={0.05}>
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <span
+                className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0"
+                style={{ background: 'var(--accent-primary)', color: '#fff' }}
+              >
+                H
+              </span>
+              <h3
+                className="text-2xl font-bold"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                Visual &mdash; immagini e video
+              </h3>
+            </div>
+
+            <div className="space-y-4 text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <p>
+                L&apos;ecosistema dell&apos;AI visual si organizza su <strong style={{ color: 'var(--text-primary)' }}>tre livelli</strong>:
+                il <strong style={{ color: 'var(--text-primary)' }}>modello</strong> (es. FLUX, Stable Diffusion, Kling),
+                l&apos;<strong style={{ color: 'var(--text-primary)' }}>interfaccia</strong> che lo rende utilizzabile (es. Leonardo.ai, Microsoft Designer),
+                e gli <strong style={{ color: 'var(--text-primary)' }}>aggregatori</strong> che ne raccolgono molti in un unico posto (es. Krea, Freepik).
+                Lo stesso modello su piattaforme diverse produce risultati diversi, perché l&apos;interfaccia e
+                i parametri cambiano.
+              </p>
+
+              <p>
+                Per i prompt visivi la regola è: <strong style={{ color: 'var(--text-primary)' }}>soggetto + azione + ambiente + luce + stile + formato</strong>.
+                Non &quot;una persona&quot; ma &quot;donna professionale in ufficio, luce naturale, stile fotografico corporate, 16:9&quot;.
+                Più siete precisi nella descrizione, più il risultato sarà vicino a quello che volete.
+              </p>
+
+              <p>
+                Per la <strong style={{ color: 'var(--text-primary)' }}>foto profilo professionale</strong> abbiamo scelto l&apos;approccio responsabile: migliorate le
+                vostre vere foto (rimuovete lo sfondo con remove.bg, aggiungete sfondo professionale con
+                Canva), non generate profili fake con AI. I tool gratuiti consigliati:
+                Microsoft Designer per chi inizia, Leonardo.ai (150 crediti/giorno gratis) per chi vuole
+                più controllo, Pika per video semplici.
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <div className="section-divider max-w-xs my-8" />
+
+        {/* ============================================================ */}
+        {/*  MODULO I — Excel e dati                                      */}
+        {/* ============================================================ */}
+        <AnimatedSection delay={0.05}>
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <span
+                className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0"
+                style={{ background: 'var(--accent-primary)', color: '#fff' }}
+              >
+                I
+              </span>
+              <h3
+                className="text-2xl font-bold"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                Excel e dati
+              </h3>
+            </div>
+
+            <div className="space-y-4 text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <p>
+                L&apos;AI ha cambiato il paradigma: non dovete più memorizzare &quot;come si fa CERCA.VERT?&quot;,
+                ma descrivete cosa volete (&quot;ho questa tabella, voglio questo risultato&quot;) e <strong style={{ color: 'var(--text-primary)' }}>l&apos;AI scrive
+                la formula per voi</strong>. Gemini è già integrato in Google Sheets, Copilot è in Excel &mdash;
+                l&apos;AI è <em>dentro</em> i fogli, non serve aprire ChatGPT separatamente.
+              </p>
+
+              <p>
+                Concetto fondamentale: <strong style={{ color: 'var(--text-primary)' }}>garbage in, garbage out</strong>.
+                Se i dati sono sporchi (duplicati, errori, formati incoerenti), l&apos;analisi sarà sbagliata.
+                L&apos;AI è bravissima a generare formule e grafici, ma non può sapere se i vostri dati
+                hanno problemi &mdash; quello è il vostro lavoro.
+              </p>
+
+              <p>
+                Due strumenti chiave: <strong style={{ color: 'var(--text-primary)' }}>Flash Fill</strong> (Ctrl+E in Excel) &mdash; mostrate un
+                esempio di trasformazione e Excel capisce il pattern e lo applica a tutto.
+                E il <strong style={{ color: 'var(--text-primary)' }}>Code Interpreter</strong> di ChatGPT: caricate un file Excel, l&apos;AI
+                lo analizza, lo pulisce, crea grafici e statistiche &mdash; tutto senza che voi scriviate
+                una riga di codice. Dovete solo verificare che i risultati abbiano senso.
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <div className="section-divider max-w-xs my-8" />
+
+        {/* ============================================================ */}
+        {/*  MODULO J — Automazioni, agenti e creazione                   */}
+        {/* ============================================================ */}
+        <AnimatedSection delay={0.05}>
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <span
+                className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0"
+                style={{ background: 'var(--accent-primary)', color: '#fff' }}
+              >
+                J
+              </span>
+              <h3
+                className="text-2xl font-bold"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                Automazioni, agenti e creazione
+              </h3>
+            </div>
+
+            <div className="space-y-4 text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+              <p>
+                Siamo partiti dalle <strong style={{ color: 'var(--text-primary)' }}>API</strong>, i &quot;camerieri&quot; del mondo digitale:
+                portano ordini tra software diversi. Le usate già ogni giorno senza saperlo (quando Google Maps
+                mostra il traffico, chiede dati via API). Capire che esistono vi permette di capire come
+                i tool si collegano tra loro.
+              </p>
+
+              <p>
+                Distinzione pratica importante: un <strong style={{ color: 'var(--text-primary)' }}>connettore</strong> è quando l&apos;AI accede a
+                un servizio quando <em>voi</em> glielo chiedete (es. &quot;cerca nel mio Drive&quot;). Un&apos;<strong style={{ color: 'var(--text-primary)' }}>automazione</strong> è
+                quando lavora da sola al verificarsi di un evento (es. &quot;ogni volta che arriva un&apos;email
+                da un cliente, salva l&apos;allegato in Drive e aggiorna il foglio&quot;). La logica
+                base è sempre <strong style={{ color: 'var(--text-primary)' }}>trigger &rarr; azione</strong>: quando succede X, fai Y.
+              </p>
+
+              <p>
+                Ma attenzione al <strong style={{ color: 'var(--text-primary)' }}>ROI</strong>: automatizzate solo se il tempo risparmiato
+                supera il tempo di setup. Se ci mettete 3 ore a creare un&apos;automazione che vi fa risparmiare
+                5 minuti al mese, non ha senso. Tool come <strong style={{ color: 'var(--text-primary)' }}>Make e Zapier</strong> rendono le automazioni
+                accessibili senza codice, con interfacce visuali drag-and-drop.
+              </p>
+
+              <p>
+                Infine, la differenza tra <strong style={{ color: 'var(--text-primary)' }}>chatbot e agente</strong>: un chatbot risponde alle
+                vostre domande, un agente <em>pianifica e agisce</em>. Gli date un obiettivo (&quot;trova 10 fornitori
+                di X con prezzi competitivi&quot;) e lui decide quali passi fare. E il <strong style={{ color: 'var(--text-primary)' }}>vibe coding</strong>:
+                descrivete un&apos;applicazione a parole e tool come Lovable, v0 o Claude Artifacts la
+                costruiscono per voi &mdash; utile per prototipi veloci, non per produzione.
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <div className="section-divider max-w-xs my-8" />
+
+        {/* ============================================================ */}
+        {/*  CONCETTI TRASVERSALI                                         */}
+        {/* ============================================================ */}
+        <AnimatedSection delay={0.05}>
+          <div className="mb-8">
             <h3
-              className="text-xl font-semibold mb-8 text-center"
+              className="text-2xl font-bold mb-6 text-center"
               style={{ color: 'var(--text-primary)' }}
             >
-              I 4 principi trasversali (tutti i moduli)
+              I 4 principi che attraversano tutto il corso
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              <div className="glass-card p-6">
-                <h4
-                  className="font-bold text-base mb-3 flex items-center gap-2"
-                  style={{ color: 'var(--accent-primary)' }}
-                >
-                  <span>1.</span>
-                  <span>Verificate sempre</span>
+
+            <p
+              className="text-base leading-relaxed mb-8 text-center"
+              style={{ color: 'var(--text-secondary)' }}
+            >
+              Alcuni principi si ripetono in ogni modulo. Sono la vera base di tutto.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div
+                className="p-6 rounded-2xl"
+                style={{
+                  background: 'rgba(249, 115, 22, 0.04)',
+                  border: '1px solid rgba(249, 115, 22, 0.15)',
+                }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: 'var(--accent-primary)' }}>
+                  1. Verificate sempre
                 </h4>
-                <ul className="space-y-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
-                  <li>• Scrittura: mai pubblicare senza rileggere</li>
-                  <li>• Ricerca: controllate i fatti, l&apos;AI può inventare</li>
-                  <li>• Immagini: usate foto vere migliorate, non fake</li>
-                  <li>• Dati: testate formule su casi semplici prima</li>
-                  <li>• Automazioni: test prima di attivare su dati reali</li>
-                </ul>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  L&apos;AI può sbagliare, in ogni ambito. Mai pubblicare testi senza rileggere, mai fidarsi di fatti
+                  senza controllarli, mai applicare formule senza testarle su casi semplici, mai attivare
+                  automazioni senza farle girare in test.
+                </p>
               </div>
 
-              <div className="glass-card p-6">
-                <h4
-                  className="font-bold text-base mb-3 flex items-center gap-2"
-                  style={{ color: 'var(--accent-primary)' }}
-                >
-                  <span>2.</span>
-                  <span>Partite dal semplice</span>
+              <div
+                className="p-6 rounded-2xl"
+                style={{
+                  background: 'rgba(249, 115, 22, 0.04)',
+                  border: '1px solid rgba(249, 115, 22, 0.15)',
+                }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: 'var(--accent-primary)' }}>
+                  2. Partite dal semplice
                 </h4>
-                <ul className="space-y-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
-                  <li>• Tool gratuiti prima dei costosi</li>
-                  <li>• Funzionalità base prima delle avanzate</li>
-                  <li>• Casi d&apos;uso a basso rischio prima di quelli critici</li>
-                  <li>• Analisi prima di decisioni importanti</li>
-                </ul>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  Tool gratuiti prima dei costosi. Funzionalità base prima delle avanzate.
+                  Casi a basso rischio prima di quelli critici. Non serve il piano da $200/mese
+                  per iniziare &mdash; la versione gratuita è sufficiente per la maggior parte degli usi.
+                </p>
               </div>
 
-              <div className="glass-card p-6">
-                <h4
-                  className="font-bold text-base mb-3 flex items-center gap-2"
-                  style={{ color: 'var(--accent-primary)' }}
-                >
-                  <span>3.</span>
-                  <span>Privacy sempre</span>
+              <div
+                className="p-6 rounded-2xl"
+                style={{
+                  background: 'rgba(249, 115, 22, 0.04)',
+                  border: '1px solid rgba(249, 115, 22, 0.15)',
+                }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: 'var(--accent-primary)' }}>
+                  3. Privacy sempre
                 </h4>
-                <ul className="space-y-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
-                  <li>• No dati sensibili su AI cloud pubblici</li>
-                  <li>• Anonimizzate prima di analizzare</li>
-                  <li>• Capite cosa i connettori possono vedere</li>
-                  <li>• Per aziende: piani enterprise con garanzie</li>
-                </ul>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  Non caricate dati sensibili (clienti, pazienti, finanziari) su AI cloud.
+                  Anonimizzate prima di analizzare. Capite cosa i connettori possono vedere:
+                  se collegate Gmail, l&apos;AI può leggere tutte le email. Per aziende: piani enterprise.
+                </p>
               </div>
 
-              <div className="glass-card p-6">
-                <h4
-                  className="font-bold text-base mb-3 flex items-center gap-2"
-                  style={{ color: 'var(--accent-primary)' }}
-                >
-                  <span>4.</span>
-                  <span>L&apos;AI assiste, voi decidete</span>
+              <div
+                className="p-6 rounded-2xl"
+                style={{
+                  background: 'rgba(249, 115, 22, 0.04)',
+                  border: '1px solid rgba(249, 115, 22, 0.15)',
+                }}
+              >
+                <h4 className="font-bold text-lg mb-3" style={{ color: 'var(--accent-primary)' }}>
+                  4. L&apos;AI assiste, voi decidete
                 </h4>
-                <ul className="space-y-2 text-sm" style={{ color: 'var(--text-secondary)' }}>
-                  <li>• L&apos;AI è uno strumento, non un sostituto</li>
-                  <li>• Voi conoscete il contesto, l&apos;AI no</li>
-                  <li>• Le decisioni importanti restano vostre</li>
-                  <li>• Se qualcosa va storto, rispondete voi</li>
-                </ul>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  L&apos;AI è uno strumento, non un sostituto del vostro giudizio.
+                  Voi conoscete il contesto (cultura aziendale, persone, politiche) &mdash; l&apos;AI no.
+                  Le decisioni importanti restano vostre. Se qualcosa va storto, rispondete voi.
+                </p>
               </div>
             </div>
           </div>
         </AnimatedSection>
 
         {/* Bottom callout */}
-        <AnimatedSection delay={0.3}>
+        <AnimatedSection delay={0.1}>
           <div
             className="quote-block max-w-3xl mx-auto mt-12 p-6 rounded-2xl"
           >
@@ -376,9 +694,10 @@ export default function RecapSection() {
               className="text-base leading-relaxed text-center"
               style={{ color: 'var(--text-secondary)', fontStyle: 'normal' }}
             >
-              Questi 10 moduli vi hanno dato le competenze per lavorare con l&apos;AI — dai fondamenti alle applicazioni pratiche.
+              Questo era il viaggio. Dai fondamenti dell&apos;AI alle applicazioni pratiche, avete acquisito
+              una comprensione completa di come usare questi strumenti.
               <br />
-              Ora è il momento di capire <strong style={{ color: 'var(--accent-primary)' }}>come presentare queste competenze</strong> sul mercato del lavoro.
+              Ora è il momento di capire <strong style={{ color: 'var(--accent-primary)' }}>come presentare queste competenze</strong> nel CV, su LinkedIn, e nei colloqui.
             </p>
           </div>
         </AnimatedSection>

@@ -1,7 +1,6 @@
 'use client';
 
-import { AnimatedSection, StaggerContainer, StaggerItem } from '@/components/AnimatedSection';
-import DemoCard from '@/components/DemoCard';
+import { AnimatedSection } from '@/components/AnimatedSection';
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
@@ -309,28 +308,19 @@ export default function ATSSection() {
           </div>
         </AnimatedSection>
 
-        {/* Demo Tools */}
+        {/* Bottom tip */}
         <AnimatedSection delay={0.25}>
-          <h3
-            className="text-xl font-semibold mb-6 text-center"
-            style={{ color: 'var(--text-primary)' }}
-          >
-            Tool per testare il vostro CV
-          </h3>
+          <div className="quote-block max-w-3xl mx-auto mt-4 p-6 rounded-2xl">
+            <p
+              className="text-base leading-relaxed text-center"
+              style={{ color: 'var(--text-secondary)', fontStyle: 'normal' }}
+            >
+              <strong style={{ color: 'var(--accent-primary)' }}>Ricordatevi</strong>: potete usare l&apos;AI stessa per ottimizzare il CV.
+              Incollate l&apos;annuncio di lavoro + il vostro CV e chiedete: &quot;Riscrivi il mio CV
+              usando le keyword di questo annuncio, mantenendo solo esperienze vere.&quot;
+            </p>
+          </div>
         </AnimatedSection>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          <DemoCard
-            title="Teal Resume Builder"
-            description="Analizza gratuitamente il vostro CV rispetto a un annuncio specifico. Vi dice quali keyword mancano e come migliorare il match."
-            link={{ url: 'https://www.tealhq.com', label: 'Prova Teal' }}
-          />
-          <DemoCard
-            title="Jobscan"
-            description="Confronta il vostro CV con job description reali e vi dà un punteggio ATS. 5 scansioni gratuite al mese."
-            link={{ url: 'https://www.jobscan.co', label: 'Prova Jobscan' }}
-          />
-        </div>
       </div>
     </section>
   );
